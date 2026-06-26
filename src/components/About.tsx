@@ -22,9 +22,11 @@ export default function About() {
             <div className="glow-card !p-0 overflow-hidden">
               <div className="aspect-[4/5] relative overflow-hidden">
                 <img
-                  src="/slimane.jpg"
+                  src="/slimane-v2.jpg"
                   alt="Slimane Abaziz"
                   className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                  fetchPriority="high"
+                  loading="eager"
                 />
                 {/* Decorative corner */}
                 <div className="absolute bottom-4 right-4 w-16 h-16 rounded-xl flex items-center justify-center"

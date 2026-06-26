@@ -1,12 +1,12 @@
 import { useRef, useMemo } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Float, MeshDistortMaterial } from '@react-three/drei';
-import * as THREE from 'three';
+import { Mesh, Points, AdditiveBlending, Vector3 } from 'three';
 
 /* ─── Central Geometric Shape ─── */
 
 function CoreShape() {
-  const meshRef = useRef<THREE.Mesh>(null);
+  const meshRef = useRef<Mesh>(null);
 
   useFrame((state) => {
     if (!meshRef.current) return;
@@ -43,7 +43,7 @@ function CoreShape() {
 /* ─── Inner Glow Sphere ─── */
 
 function GlowSphere() {
-  const ref = useRef<THREE.Mesh>(null);
+  const ref = useRef<Mesh>(null);
 
   useFrame((state) => {
     if (!ref.current) return;
@@ -66,7 +66,7 @@ function GlowSphere() {
 /* ─── Orbiting Rings ─── */
 
 function OrbitRing({ radius, color, speed, offset = 0 }: { radius: number; color: string; speed: number; offset?: number }) {
-  const ref = useRef<THREE.Mesh>(null);
+  const ref = useRef<Mesh>(null);
 
   useFrame((state) => {
     if (!ref.current) return;
@@ -105,7 +105,7 @@ function Particles() {
     return arr;
   }, []);
 
-  const ref = useRef<THREE.Points>(null);
+  const ref = useRef<Points>(null);
 
   useFrame((state) => {
     if (!ref.current) return;
@@ -128,7 +128,7 @@ function Particles() {
         opacity={0.5}
         sizeAttenuation
         depthWrite={false}
-        blending={THREE.AdditiveBlending}
+        blending={AdditiveBlending}
       />
     </points>
   );
@@ -168,7 +168,7 @@ function FloatingCube({ position, scale, color, speed, offset }: {
   speed: number;
   offset: number;
 }) {
-  const ref = useRef<THREE.Mesh>(null);
+  const ref = useRef<Mesh>(null);
 
   useFrame((state) => {
     if (!ref.current) return;
@@ -179,7 +179,7 @@ function FloatingCube({ position, scale, color, speed, offset }: {
   });
 
   return (
-    <mesh ref={ref} position={position as unknown as THREE.Vector3} scale={scale}>
+    <mesh ref={ref} position={position as unknown as Vector3} scale={scale}>
       <boxGeometry args={[1, 1, 1]} />
       <meshStandardMaterial
         color={color}

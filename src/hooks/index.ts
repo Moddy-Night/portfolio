@@ -17,9 +17,24 @@ export function useActiveSection() {
       { threshold: [0, 0.25, 0.5, 0.75, 1], rootMargin: '-80px 0px -40% 0px' }
     );
 
-    const els = SECTION_IDS.map(id => document.getElementById(id)).filter(Boolean);
-    els.forEach(el => observer.observe(el!));
-    return () => els.forEach(el => observer.unobserve(el!));
+    const observeSection = (id: string) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    };
+
+    // Observe all currently existing sections
+    SECTION_IDS.forEach(observeSection);
+
+    // Watch for lazy-loaded sections (e.g. Contact)
+    const mutationObserver = new MutationObserver(() => {
+      SECTION_IDS.forEach(observeSection);
+    });
+    mutationObserver.observe(document.body, { childList: true, subtree: true });
+
+    return () => {
+      observer.disconnect();
+      mutationObserver.disconnect();
+    };
   }, []);
 
   return activeId;

@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
-
-const SECTION_IDS = ['hero', 'about', 'skills', 'projects', 'contact'];
+import { SECTION_IDS } from '../data';
 
 export function useActiveSection() {
   const [activeId, setActiveId] = useState('hero');

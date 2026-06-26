@@ -73,7 +73,7 @@ export default function NavBar({ activeSection, onNavClick }: NavBarProps) {
             {/* Theme toggle */}
             <button
               onClick={toggleTheme}
-              className="p-2 rounded-md transition-colors hover:bg-white/5"
+              className="p-2 rounded-md transition-colors hover:bg-[var(--bg-elevated)]"
               style={{ color: 'var(--text-secondary)' }}
               aria-label={dark ? 'Switch to light mode' : 'Switch to dark mode'}
             >

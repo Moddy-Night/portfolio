@@ -166,7 +166,7 @@ h2.section-heading {
 
 .nav-link:hover {
   color: var(--text-primary);
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--bg-elevated);
 }
 
 .nav-link.active {
@@ -407,7 +407,7 @@ h2.section-heading {
 
 .input-field {
   width: 100%;
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--bg-elevated);
   border: 1.5px solid var(--border-color);
   color: var(--text-primary);
   padding: 0.875rem 1.125rem;
@@ -438,7 +438,7 @@ h2.section-heading {
   width: 4rem;
   height: 4rem;
   border-radius: 1rem;
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--bg-elevated);
   border: 1px solid var(--border-color);
   transition: all 0.3s ease;
   font-size: 1.75rem;

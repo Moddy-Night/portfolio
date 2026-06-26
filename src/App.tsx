@@ -4,12 +4,11 @@ import Hero from './components/Hero';
 import About from './components/About';
 import Skills from './components/Skills';
 import Projects from './components/Projects';
+import { SECTION_IDS } from './data';
 import { useActiveSection, useScrollReveal } from './hooks';
 
 /* Lazy load Contact (below fold) */
 const Contact = lazy(() => import('./components/Contact'));
-
-const SECTION_IDS = ['hero', 'about', 'skills', 'projects', 'contact'];
 
 function App() {
   const activeSection = useActiveSection();

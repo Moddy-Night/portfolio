@@ -1,3 +1,5 @@
+export const SECTION_IDS = ['hero', 'about', 'skills', 'projects', 'contact'];
+
 export interface Project {
   id: number;
   title: string;

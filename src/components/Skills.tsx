@@ -47,7 +47,7 @@ export default function Skills() {
                   {/* Skills grid */}
                   <div className="grid grid-cols-4 gap-3">
                     {items.map((skill) => (
-                      <div key={skill.name} className="group flex flex-col items-center gap-1 p-2 rounded-lg transition-all duration-300 hover:bg-white/5">
+                      <div key={skill.name} className="group flex flex-col items-center gap-1 p-2 rounded-lg transition-all duration-300 hover:bg-[var(--bg-elevated)]">
                         <div className="text-2xl transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1">
                           <TechIcon name={skill.icon} className="w-8 h-8" />
                         </div>

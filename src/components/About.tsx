@@ -1,6 +1,6 @@
 export default function About() {
   const stats = [
-    { value: '2+', label: 'Years Coding', color: 'var(--accent-cyan)' },
+    { value: '3+', label: 'Years Coding', color: 'var(--accent-cyan)' },
     { value: '6+', label: 'Projects Shipped', color: 'var(--accent-purple)' },
     { value: '4', label: 'Tech Stacks', color: 'var(--accent-pink)' },
     { value: '∞', label: 'Learning', color: 'var(--accent-blue)' },
@@ -73,7 +73,7 @@ export default function About() {
                   key={stat.label}
                   className="text-center p-3 rounded-xl"
                   style={{
-                    background: 'rgba(255,255,255,0.02)',
+                    background: 'var(--bg-elevated)',
                     border: '1px solid var(--border-color)',
                   }}
                 >

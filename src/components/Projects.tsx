@@ -58,7 +58,7 @@ export default function Projects() {
                   {project.technologies.map((tech) => (
                     <span key={tech} className="mono text-[10px] px-2 py-0.5 rounded"
                       style={{
-                        background: 'rgba(255,255,255,0.03)',
+                        background: 'var(--bg-elevated)',
                         color: 'var(--text-tertiary)',
                       }}
                     >

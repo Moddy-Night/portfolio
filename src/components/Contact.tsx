@@ -87,7 +87,7 @@ export default function Contact() {
                 <div className="space-y-4">
                   <a
                     href="mailto:slimaneabaziz76@gmail.com"
-                    className="flex items-center gap-3 p-3 rounded-lg transition-all duration-200 hover:bg-white/5 group"
+                    className="flex items-center gap-3 p-3 rounded-lg transition-all duration-200 hover:bg-[var(--bg-elevated)] group"
                   >
                     <div className="w-10 h-10 rounded-lg flex items-center justify-center text-lg"
                       style={{ background: 'rgba(34, 211, 238, 0.1)' }}
@@ -132,7 +132,7 @@ export default function Contact() {
                         rel="noopener noreferrer"
                         className="w-10 h-10 rounded-lg flex items-center justify-center text-sm font-medium transition-all duration-200 hover:-translate-y-0.5"
                         style={{
-                          background: 'rgba(255,255,255,0.03)',
+                          background: 'var(--bg-elevated)',
                           border: '1px solid var(--border-color)',
                           color: 'var(--text-secondary)',
                         }}
@@ -277,7 +277,7 @@ export default function Contact() {
           </div>
 
           {/* Footer */}
-          <div className="text-center mt-12 pt-8 border-t" style={{ borderColor: 'var(--border-color)' }}>
+          <footer className="text-center mt-12 pt-8 border-t" style={{ borderColor: 'var(--border-color)' }}>
             <p className="mono text-xs" style={{ color: 'var(--text-tertiary)' }}>
               Designed & Built by{' '}
               <span className="text-cyan-400">Slimane Abaziz</span>
@@ -285,7 +285,7 @@ export default function Contact() {
             <p className="mono text-[10px] mt-2" style={{ color: 'var(--text-tertiary)' }}>
               {'</>'} with React + Three.js + TypeScript
             </p>
-          </div>
+          </footer>
         </div>
       </div>
     </section>

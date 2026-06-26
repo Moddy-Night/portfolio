@@ -8,17 +8,36 @@ export default function Contact() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
+  const [bot, setBot] = useState(''); // honeypot — users don't see it
+
+  const sanitizeInput = (val: string): string =>
+    val.trim().replace(/<[^>]*>/g, '').slice(0, 2000);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+
+    // ── Honeypot check ──
+    if (bot) return; // bot filled hidden field, silently reject
+
+    // ── Client-side validation ──
+    const clean = {
+      name: sanitizeInput(name),
+      email: email.trim().toLowerCase(),
+      message: sanitizeInput(message),
+    };
+
+    if (!clean.name || clean.name.length < 2) return;
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(clean.email)) return;
+    if (!clean.message || clean.message.length < 10) return;
+
     setStatus('sending');
 
     const formData = new FormData();
-    formData.set('name', name);
-    formData.set('email', email);
-    formData.set('message', message);
-    formData.set('_subject', 'Portfolio Contact');
-    formData.set('_captcha', 'false');
+    formData.set('name', clean.name);
+    formData.set('email', clean.email);
+    formData.set('message', clean.message);
+    formData.set('_subject', 'Portfolio Contact — slimane-abaziz.vercel.app');
+    formData.set('_captcha', 'false'); // invisible spam protection
 
     try {
       const res = await fetch('https://formsubmit.co/ajax/slimaneabaziz76@gmail.com', {
@@ -29,6 +48,9 @@ export default function Contact() {
 
       if (res.ok) {
         setStatus('sent');
+        setName('');
+        setEmail('');
+        setMessage('');
       } else {
         setStatus('error');
       }
@@ -144,9 +166,22 @@ export default function Contact() {
                     </p>
                   </div>
                 ) : (
-                  <form onSubmit={handleSubmit} className="space-y-4">
-                    <input type="hidden" name="_subject" value="Portfolio Contact" />
+                  <form onSubmit={handleSubmit} className="space-y-4" noValidate>
+                    {/* ── Honeypot: hidden from users, bots fill this ── */}
+                    <div style={{ position: 'absolute', left: '-9999px' }} aria-hidden="true">
+                      <input
+                        type="text"
+                        name="_gotcha"
+                        tabIndex={-1}
+                        autoComplete="off"
+                        value={bot}
+                        onChange={(e) => setBot(e.target.value)}
+                      />
+                    </div>
+
+                    <input type="hidden" name="_subject" value="Portfolio Contact — slimane-abaziz.vercel.app" />
                     <input type="hidden" name="_captcha" value="false" />
+                    <input type="hidden" name="_template" value="table" />
 
                     <div>
                       <label className="mono text-[11px] uppercase tracking-[0.1em] mb-1.5 block"
@@ -158,6 +193,8 @@ export default function Contact() {
                         type="text"
                         name="name"
                         required
+                        minLength={2}
+                        maxLength={100}
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         className="input-field"
@@ -175,6 +212,7 @@ export default function Contact() {
                         type="email"
                         name="email"
                         required
+                        maxLength={254}
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         className="input-field"
@@ -191,6 +229,8 @@ export default function Contact() {
                       <textarea
                         name="message"
                         required
+                        minLength={10}
+                        maxLength={5000}
                         rows={4}
                         value={message}
                         onChange={(e) => setMessage(e.target.value)}

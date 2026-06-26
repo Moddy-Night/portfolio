@@ -194,6 +194,13 @@ function FloatingCube({ position, scale, color, speed, offset }: {
 
 /* ─── Main Scene Export ─── */
 
+/* Suppress harmless THREE.Clock deprecation (upstream R3F issue) */
+const _warn = console.warn;
+console.warn = (...args) => {
+  if (args[0]?.includes?.('THREE.Clock')) return;
+  _warn(...args);
+};
+
 export default function HeroScene() {
   return (
     <div className="absolute inset-0 z-0" aria-hidden="true">

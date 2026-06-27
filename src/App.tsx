@@ -11,15 +11,16 @@ import { useActiveSection, useScrollReveal } from './hooks';
 const Contact = lazy(() => import('./components/Contact'));
 
 function App() {
-  const activeSection = useActiveSection();
+  const [activeSection, setActiveSection] = useActiveSection();
   useScrollReveal();
 
   const handleNavClick = useCallback((id: string) => {
+    setActiveSection(id);
     const el = document.getElementById(id);
     if (el) {
       el.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
-  }, []);
+  }, [setActiveSection]);
 
   /* Keyboard navigation */
   useEffect(() => {

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { SECTION_IDS } from '../data';
 
-export function useActiveSection() {
+export function useActiveSection(): [string, (id: string) => void] {
   const [activeId, setActiveId] = useState('hero');
 
   useEffect(() => {
@@ -37,7 +37,7 @@ export function useActiveSection() {
     };
   }, []);
 
-  return activeId;
+  return [activeId, setActiveId];
 }
 
 export function useScrollReveal() {
